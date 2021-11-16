@@ -29,3 +29,23 @@ services:
 volumes:
   wordpress:
   db:
+
+version: '3.1'
+
+services:
+  db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8020:80
+    environment:
+      - PMA_ARBITRARY=1
+volumes:
+  phpmyadmin:
+  db:
